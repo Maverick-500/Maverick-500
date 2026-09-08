@@ -1,0 +1,44 @@
+name: Refresh profile
+
+on:
+  schedule:
+    # 18:00 UTC daily = 04:00 AEST / 05:00 AEDT
+    - cron: "0 18 * * *"
+  push:
+    paths:
+      - ".github/workflows/refresh-profile.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      # Renders the streak card as a static SVG committed into this repo,
+      # so it no longer depends on a shared public endpoint at all.
+      - name: Generate streak stats
+        uses: DenverCoder1/github-readme-streak-stats@main
+        with:
+          options: user=Maverick-500&theme=dark&hide_border=true&border_radius=8&disable_animations=true
+          path: profile/streak.svg
+          token: ${{ secrets.STREAK_STATS_TOKEN || secrets.GITHUB_TOKEN }}
+
+      # GitHub proxies every external image through camo and caches it by URL.
+      # Bumping cb= changes the URL, which is what forces a fresh fetch.
+      - name: Bump camo cache-buster
+        run: |
+          STAMP=$(date -u +%Y%m%d%H%M)
+          perl -0pi -e "s/([?&])cb=\d+/\${1}cb=$STAMP/g" README.md
+          grep -o 'cb=[0-9]*' README.md
+
+      - name: Commit if changed
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git diff --staged --quiet || git commit -m "chore: refresh profile stats"
+          git push
