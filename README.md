@@ -60,7 +60,7 @@ strategic thinking. Creating work that compounds over time.
   .github/workflows/refresh-profile.yml to defeat GitHub's camo image cache.
 -->
 
-<img src="https://jash-gh-stats.vercel.app/api?username=Maverick-500&theme=github_dark&hide_border=true&border_radius=8&include_all_commits=true&count_private=true&cb=0" height="165" alt="GitHub stats" />
+<img src="https://jash-gh-stats.vercel.app/api?username=Maverick-500&theme=github_dark&hide_border=true&border_radius=8&include_all_commits=true&count_private=true&cb=202609080448" height="165" alt="GitHub stats" />
 <img src="./profile/streak.svg" height="165" alt="Contribution streak" />
 
-<img src="https://jash-gh-stats.vercel.app/api/top-langs/?username=Maverick-500&theme=github_dark&hide_border=true&border_radius=8&include_all_commits=true&count_private=true&layout=compact&langs_count=8&cb=0" height="165" alt="Top languages" />
+<img src="https://jash-gh-stats.vercel.app/api/top-langs/?username=Maverick-500&theme=github_dark&hide_border=true&border_radius=8&include_all_commits=true&count_private=true&layout=compact&langs_count=8&cb=202609080448" height="165" alt="Top languages" />
